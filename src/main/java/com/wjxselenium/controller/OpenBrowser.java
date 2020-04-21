@@ -7,6 +7,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class OpenBrowser {
 
     public static void main(String[] args) {
+        //(1)、firefox浏览器测试时，条件是selenium-java 版本3.12.0、selenium-chrome-driver版本3.12.0、添加依赖selenium-server-standalone-3.12.0.jar、安装Firefox 67.0.2版本、使用geckodriver-v0.24.0-macos。
+        //(2)、Chrome浏览器测试时，条件是selenium-java 版本3.12.0、selenium-chrome-driver版本3.12.0、添加依赖selenium-server-standalone-3.12.0.jar、安装Firefox 70~73版本。
+
         // 如果测试的浏览器没有安装在默认目录，那么必须在程序中设置，例如下面
         //bug1:System.setProperty("webdriver.chrome.driver", "C://Program Files (x86)//Google//Chrome//Application//chrome.exe");
         //bug2:System.setProperty("webdriver.chrome.driver", "C://Users//Yoga//Downloads//chromedriver_win32//chromedriver.exe");
