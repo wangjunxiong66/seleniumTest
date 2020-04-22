@@ -1,8 +1,15 @@
 package com.wjxselenium.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class OpenBrowser {
 
@@ -11,9 +18,8 @@ public class OpenBrowser {
         //(2)、Chrome浏览器测试时，条件是selenium-java 版本3.12.0、selenium-chrome-driver版本3.12.0、添加依赖selenium-server-standalone-3.12.0.jar、安装Firefox 70~73版本。
 
         // 如果测试的浏览器没有安装在默认目录，那么必须在程序中设置，例如下面
-        //bug1:System.setProperty("webdriver.chrome.driver", "C://Program Files (x86)//Google//Chrome//Application//chrome.exe");
-        //bug2:System.setProperty("webdriver.chrome.driver", "C://Users//Yoga//Downloads//chromedriver_win32//chromedriver.exe");
-        //System.setProperty("webdriver.chrome.driver", "D://tanzhenTest//chromedriver_win32//chromedriver.exe");
+        //Chrome浏览器设置  System.setProperty("webdriver.chrome.driver", "D://tanzhenTest//chromedriver_win32//chromedriver.exe");
+        //Firefox浏览器设置   System.setProperty("webdriver.gecko.driver", "/Users/finup/Documents/E/myproject/test/springboottest/selenium/src/main/resources/static/geckodriver/geckodriver-v0.24.0-macos");
         // 下面是用firefox浏览器所做的测试
         // 获取当前操作系统，设置geckodriverPath
         String osName = System.getProperty("os.name");
@@ -33,11 +39,23 @@ public class OpenBrowser {
         WebDriver driver = new FirefoxDriver();
         // 在火狐浏览器打开map.baidu.com
         driver.get("https://www.baidu.com");
+        System.out.println("页面title是："+driver.getTitle());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+//        Boolean webDriverWait = new WebDriverWait(driver,10).until(ExpectedConditions.titleContains("百度一下，你就知道"));
+//        System.out.println("页面标题包含\"百度一下，你就知道\"      "+webDriverWait);
+        WebDriverWait webDriverWait = new WebDriverWait(driver,10,5);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.id("kw"))).sendKeys("输入信息");
+        System.out.println("页面标题包含\"百度一下，你就知道\"      "+webDriverWait);
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df1.format(new Date()));// new Date()为获取当前系统时间
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df2.format(new Date()));// new Date()为获取当前系统时间
         driver.quit();
 
         try {
@@ -47,9 +65,8 @@ public class OpenBrowser {
         }
 
         //如果测试的浏览器没有安装在默认目录，那么必须在程序中设置，例如下面
-        //bug1:System.setProperty("webdriver.chrome.driver", "C://Program Files (x86)//Google//Chrome//Application//chrome.exe");
-        //bug2:System.setProperty("webdriver.chrome.driver", "C://Users//Yoga//Downloads//chromedriver_win32//chromedriver.exe");
-        //System.setProperty("webdriver.chrome.driver", "D://tanzhenTest//chromedriver_win32//chromedriver.exe");
+        //Chrome浏览器设置  System.setProperty("webdriver.chrome.driver", "D://tanzhenTest//chromedriver_win32//chromedriver.exe");
+        //Firefox浏览器设置   System.setProperty("webdriver.gecko.driver", "/Users/finup/Documents/E/myproject/test/springboottest/selenium/src/main/resources/static/geckodriver/geckodriver-v0.24.0-macos");
         // 下面是用chrome浏览器所做的测试
         // 启用Chrome浏览器
         WebDriver driver1 = new ChromeDriver();
