@@ -36,7 +36,7 @@ public class CaptureScreen {
         // 创建一个用于保存图片的文件夹。File file=new File(); 这句是新建一个文件。File.separator这个代表系统目录中的间隔符，说白了就是斜线，不过有时候需要双线，有时候是单线，你用这个静态变量就解决兼容问题了。
 //        File screenCaptureDirectory = new File("J:" + File.separator + "ScreenCapture" + File.separator + dfDirectory.format(new Date()));
         String projectDirectory = System.getProperty("user.dir") ;
-        File screenCaptureDirectory = new File(projectDirectory + File.separator + "ScreenCapture" + File.separator + dfDirectory.format(new Date()));
+        File screenCaptureDirectory = new File(projectDirectory + File.separator + "src" +  File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "ScreenCapture" + File.separator + dfDirectory.format(new Date()));
         if (!screenCaptureDirectory.exists()) {
             //  利用Java的自带命令file.mkdirs() 是可以直接在系统创建文件夹的
             screenCaptureDirectory.mkdirs();

@@ -22,8 +22,10 @@ public class Test {
 
         // 启用Chrome浏览器
         WebDriver driver1 = new ChromeDriver();
-        // 在Chrome浏览器打开map.baidu.com
-        driver1.get("https://m.iqianjin.com/m/login/");
+        // 在Chrome浏览器打开URL
+        driver1.get("https://www.baidu.com");
+
+
         //  获取网页的 title
         System.out.println("The testing page title is: " + driver1.getTitle());
         try {
@@ -31,12 +33,10 @@ public class Test {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("下面发送组合键");
-        driver1.findElement(By.className("img-code")).sendKeys(Keys.COMMAND,Keys.ALT,"j");
-        System.out.println("发送组合键结束");
+
         // 全局隐式等待
         driver1.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement ele = driver1.findElement(By.className("img-code"));
+        WebElement ele = driver1.findElement(By.id("kw"));
         //  利用TakesScreenshot截屏
         File screenshot = ((TakesScreenshot)driver1).getScreenshotAs(OutputType.FILE);
         BufferedImage fullImg =null;
@@ -49,7 +49,8 @@ public class Test {
         Point point = ele.getLocation();
         System.out.println("验证码位于   "+point);
         //getSubimage（）定位元素   x轴位置  y轴位置  宽  高  定位到验证码图片
-        BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), 120, 48);
+//        BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), 420, 248);
+        BufferedImage eleScreenshot= fullImg;
         try {
             ImageIO.write(eleScreenshot, "png", screenshot);
         }catch (IOException e1) {
